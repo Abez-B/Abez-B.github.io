@@ -1,10 +1,11 @@
-# Bharath P J — Personal Portfolio
+# Bharath Kumar P — Portfolio
 
-Minimalist, ultra-fast, static personal portfolio and engineering showcase hosted on GitHub Pages.
+Neat, minimal, two-color monochrome (black and white) engineering index and portfolio.
 
-🔗 **Live Site:** [https://abez-b.github.io/](https://abez-b.github.io/)
+🔗 **Live:** [https://abez-b.github.io/](https://abez-b.github.io/)
 
-### Highlights
-- Zero dependencies, zero build steps, ~10ms load time.
-- System-aware Dark/Light mode with persistence.
-- Selected open source projects: Sixhuma, bureprint, Ezhuthurukal, HungerBlock.
+### Architecture
+- Strict Swiss-inspired two-color monochrome design system.
+- Zero dependencies, zero build overhead (~10ms FCP).
+- Pure HTML5, CSS custom properties, and vanilla JavaScript.
+- Full responsive editorial layout with dark/light mode toggle.
