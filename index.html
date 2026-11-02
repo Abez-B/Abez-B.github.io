@@ -11,16 +11,16 @@
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    /* Strict Two-Color Monochrome System: Black & White */
+    /* Strict Two-Color Monochrome System: Pure Black & White (Full-Page Swiss Grid) */
     :root {
       --bg: #000000;
-      --surface: #080808;
-      --surface-hover: #121212;
+      --surface: #0a0a0a;
+      --surface-hover: #141414;
       --border: #222222;
-      --border-hover: #ffffff;
+      --border-strong: #333333;
       --text: #ffffff;
       --muted: #888888;
       --subtle: #444444;
@@ -33,10 +33,10 @@
       --surface: #f7f7f7;
       --surface-hover: #efefef;
       --border: #dddddd;
-      --border-hover: #000000;
+      --border-strong: #cccccc;
       --text: #000000;
       --muted: #666666;
-      --subtle: #bbbbbb;
+      --subtle: #aaaaaa;
     }
 
     * {
@@ -54,16 +54,18 @@
       color: var(--text);
       font-family: var(--font-sans);
       line-height: 1.6;
-      padding: 72px 24px 120px;
+      padding: 48px 48px 100px;
       display: flex;
       justify-content: center;
       transition: background-color 0.2s ease, color 0.2s ease;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
     }
 
+    /* Expansive full-page container */
     .container {
       width: 100%;
-      max-width: 680px;
+      max-width: 1380px;
     }
 
     /* Top Utility Bar */
@@ -71,20 +73,22 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 56px;
-      padding-bottom: 16px;
+      margin-bottom: 64px;
+      padding-bottom: 20px;
       border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .status-label {
+    .utility-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-family: var(--font-mono);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .status-marker {
@@ -92,6 +96,29 @@
       height: 6px;
       background: var(--text);
       display: inline-block;
+    }
+
+    .utility-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .sponsor-link {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-strong);
+      padding-bottom: 2px;
+      transition: border-color 0.15s ease, opacity 0.15s ease;
+    }
+
+    .sponsor-link:hover {
+      border-color: var(--text);
+      opacity: 0.8;
     }
 
     .theme-btn {
@@ -102,7 +129,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      padding: 4px 10px;
+      padding: 5px 12px;
       cursor: pointer;
       transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
     }
@@ -113,26 +140,37 @@
       border-color: var(--text);
     }
 
-    /* Hero / Intro */
+    /* Full-Width Split Hero */
     header {
-      margin-bottom: 64px;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 84px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-identity {
+      display: flex;
+      flex-direction: column;
     }
 
     .index-tag {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--muted);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       margin-bottom: 16px;
       display: block;
     }
 
     h1 {
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 8px;
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      margin-bottom: 16px;
       text-transform: uppercase;
     }
 
@@ -140,46 +178,65 @@
       font-family: var(--font-mono);
       font-size: 13px;
       color: var(--muted);
-      letter-spacing: 0.04em;
-      margin-bottom: 24px;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
+    .hero-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
     .lead-text {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 28px;
+      line-height: 1.75;
+      margin-bottom: 32px;
     }
 
     .lead-text strong {
       color: var(--text);
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    /* Links Bar */
+    /* Action Buttons Bar */
     .links-bar {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
       align-items: center;
     }
 
     .btn-link {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11.5px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--text);
       text-decoration: none;
       border: 1px solid var(--border);
-      padding: 8px 14px;
+      padding: 9px 16px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       background: var(--surface);
       cursor: pointer;
       transition: all 0.15s ease;
+    }
+
+    .btn-link-highlight {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+      font-weight: 600;
+    }
+
+    .btn-link-highlight:hover {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--text);
     }
 
     .btn-link:hover {
@@ -194,7 +251,7 @@
 
     /* Section Structure */
     section {
-      margin-bottom: 64px;
+      margin-bottom: 84px;
     }
 
     .section-title-row {
@@ -202,13 +259,13 @@
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 24px;
-      padding-bottom: 8px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
 
     h2 {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -218,45 +275,51 @@
     .section-meta {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--subtle);
+      color: var(--muted);
+      letter-spacing: 0.06em;
     }
 
-    /* Project Rows (Clean Swiss Editorial Listing) */
-    .project-list {
+    /* Full-Width Swiss Project Rows (Editorial Layout) */
+    .project-table {
       display: flex;
       flex-direction: column;
       border-top: 1px solid var(--border);
     }
 
     .project-row {
-      display: block;
-      padding: 22px 0;
+      display: grid;
+      grid-template-columns: 140px 260px 1fr 220px;
+      align-items: baseline;
+      gap: 28px;
+      padding: 24px 8px;
       border-bottom: 1px solid var(--border);
       text-decoration: none;
       color: inherit;
-      transition: border-color 0.15s ease, padding-left 0.15s ease;
+      transition: border-color 0.15s ease, background-color 0.15s ease, padding-left 0.15s ease;
     }
 
     .project-row:hover {
-      border-color: var(--text);
-      padding-left: 8px;
+      background-color: var(--surface);
+      border-color: var(--border-strong);
+      padding-left: 16px;
     }
 
-    .row-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 8px;
-      gap: 16px;
+    .col-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .project-name {
+    .col-title {
       font-size: 17px;
       font-weight: 600;
       letter-spacing: -0.02em;
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--text);
     }
 
     .arrow-icon {
@@ -268,90 +331,72 @@
 
     .project-row:hover .arrow-icon {
       color: var(--text);
-      transform: translateX(3px) translateY(-1px);
+      transform: translateX(4px) translateY(-1px);
     }
 
-    .project-index {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
-
-    .project-summary {
-      font-size: 13.5px;
+    .col-desc {
+      font-size: 14px;
       color: var(--muted);
       line-height: 1.6;
-      margin-bottom: 10px;
-      max-width: 600px;
     }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .col-tags {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--subtle);
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      text-align: right;
+      line-height: 1.6;
     }
 
-    .tag-item::after {
-      content: "/";
-      margin-left: 8px;
-      color: var(--subtle);
-    }
-
-    .tag-item:last-child::after {
-      content: "";
-    }
-
-    /* Principles Grid */
+    /* Core Principles / Architecture Grid */
     .principles-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
 
     .principle-item {
       border: 1px solid var(--border);
-      padding: 18px;
+      padding: 28px 24px;
       background: var(--surface);
-      transition: border-color 0.15s ease;
+      transition: border-color 0.15s ease, transform 0.15s ease;
     }
 
     .principle-item:hover {
       border-color: var(--text);
+      transform: translateY(-2px);
     }
 
     .principle-num {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--subtle);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      letter-spacing: 0.06em;
     }
 
     .principle-title {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       color: var(--text);
     }
 
     .principle-desc {
-      font-size: 12.5px;
+      font-size: 13.5px;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
-      padding-top: 32px;
+      padding-top: 36px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -361,13 +406,20 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     footer a {
       color: var(--text);
       text-decoration: none;
       border-bottom: 1px solid var(--subtle);
+      padding-bottom: 2px;
     }
 
     footer a:hover {
@@ -377,7 +429,7 @@
     /* Toast for Copy Notification */
     .toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 32px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
       background: var(--text);
@@ -386,8 +438,8 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      padding: 8px 16px;
-      border-radius: 0;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
       opacity: 0;
       transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
       pointer-events: none;
@@ -398,35 +450,89 @@
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1080px) {
+      body {
+        padding: 36px 28px 80px;
+      }
+      header {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .project-row {
+        grid-template-columns: 120px 220px 1fr;
+      }
+      .col-tags {
+        display: none;
+      }
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 18px 60px;
+      }
+      .utility-bar {
+        margin-bottom: 40px;
+      }
+      .project-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 20px 0;
+      }
+      .project-row:hover {
+        padding-left: 6px;
+      }
+      .col-tags {
+        display: block;
+        text-align: left;
+        margin-top: 4px;
+      }
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Utility / Status Bar -->
+    <!-- Top Utility Bar -->
     <div class="utility-bar">
-      <div class="status-label">
+      <div class="utility-left">
         <span class="status-marker"></span>
-        Systems & Software Engineer
+        Bharath Kumar P — Systems & Software Engineer
       </div>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle monochrome mode">
-        Mode: Dark
-      </button>
+      <div class="utility-right">
+        <a href="https://buymeacoffee.com/abhrams" target="_blank" rel="noopener noreferrer" class="sponsor-link">Buy Me a Coffee ↗</a>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle monochrome mode">
+          Mode: Dark
+        </button>
+      </div>
     </div>
 
-    <!-- Hero / Intro -->
+    <!-- Hero / Full-Width Split Grid -->
     <header>
-      <span class="index-tag">[01 // INDEX]</span>
-      <h1>Bharath Kumar P</h1>
-      <div class="role-title">Distributed Systems / Local-First / Protocols</div>
-      <p class="lead-text">
-        Engineering software focused on <strong>ephemeral real-time communication</strong>, <strong>local-first Android architectures</strong>, and low-overhead developer tooling. Dedicated to lightweight, transparent software built with zero telemetry and minimal runtime abstraction.
-      </p>
+      <div class="hero-identity">
+        <span class="index-tag">[01 // INDEX]</span>
+        <h1>Bharath Kumar P</h1>
+        <div class="role-title">Distributed Systems / Local-First / Protocols</div>
+      </div>
+      <div class="hero-details">
+        <p class="lead-text">
+          Engineering software focused on <strong>ephemeral real-time communication</strong>, <strong>local-first Android architectures</strong>, and low-overhead developer tooling. Dedicated to lightweight, transparent software built with zero telemetry and minimal runtime abstraction.
+        </p>
 
-      <div class="links-bar">
-        <a href="#work" class="btn-link">View Work ↓</a>
-        <a href="https://github.com/Abez-B" target="_blank" rel="noopener noreferrer" class="btn-link">GitHub ↗</a>
-        <a href="mailto:bharathpj12@gmail.com" class="btn-link">Email ↗</a>
-        <button id="copyEmailBtn" class="btn-link">Copy Address</button>
+        <div class="links-bar">
+          <a href="https://drive.google.com/file/d/1lAMF5l1yzKIOGJPTIYAqgJDTFpBdvvb9/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-link btn-link-highlight">Resume ↗</a>
+          <a href="https://github.com/Abez-B" target="_blank" rel="noopener noreferrer" class="btn-link">GitHub ↗</a>
+          <a href="https://buymeacoffee.com/abhrams" target="_blank" rel="noopener noreferrer" class="btn-link">Buy Me a Coffee ↗</a>
+          <a href="mailto:bharathpj12@gmail.com" class="btn-link">Email ↗</a>
+          <button id="copyEmailBtn" class="btn-link">Copy Address</button>
+        </div>
       </div>
     </header>
 
@@ -434,126 +540,112 @@
     <section id="work">
       <div class="section-title-row">
         <h2>[02 // SELECTED WORK]</h2>
-        <span class="section-meta">06 Projects</span>
+        <span class="section-meta">07 Projects</span>
       </div>
 
-      <div class="project-list">
+      <div class="project-table">
         <!-- Sixhuma -->
         <a class="project-row" href="https://abez-b.github.io/Sixhuma/" target="_blank" rel="noopener noreferrer">
-          <div class="row-header">
-            <div class="project-name">
-              Sixhuma
-              <span class="arrow-icon">↗</span>
-            </div>
-            <span class="project-index">01 / LIVE APP</span>
+          <span class="col-index">01 / LIVE APP</span>
+          <div class="col-title">
+            Sixhuma
+            <span class="arrow-icon">↗</span>
           </div>
-          <p class="project-summary">
+          <p class="col-desc">
             Ephemeral real-time meeting directory and live participant mesh network topology. Visualizes 150+ concurrent attendees with zero persistent database tracking or accounts.
           </p>
-          <div class="project-tags">
-            <span class="tag-item">Svelte 5</span>
-            <span class="tag-item">WebSockets</span>
-            <span class="tag-item">Node.js Relay</span>
-            <span class="tag-item">Zero-Auth</span>
+          <div class="col-tags">
+            Svelte 5 • WebSockets<br>Node.js Relay
+          </div>
+        </a>
+
+        <!-- Thirukkural Daily Widget -->
+        <a class="project-row" href="https://github.com/Abez-B/thirukkural-daily-widget-" target="_blank" rel="noopener noreferrer">
+          <span class="col-index">02 / WIDGET</span>
+          <div class="col-title">
+            Thirukkural Widget
+            <span class="arrow-icon">↗</span>
+          </div>
+          <p class="col-desc">
+            Cross-platform Thirukkural Daily flashcard widget for Linux desktop (Eww / Conky) and Android. Native system integration, zero background telemetry, and offline-first Tamil literature archive.
+          </p>
+          <div class="col-tags">
+            Kotlin • Linux Eww<br>Conky • Android
           </div>
         </a>
 
         <!-- bureprint -->
         <a class="project-row" href="https://github.com/Abez-B/bureprint" target="_blank" rel="noopener noreferrer">
-          <div class="row-header">
-            <div class="project-name">
-              bureprint
-              <span class="arrow-icon">↗</span>
-            </div>
-            <span class="project-index">02 / ANDROID</span>
+          <span class="col-index">03 / ANDROID</span>
+          <div class="col-title">
+            bureprint
+            <span class="arrow-icon">↗</span>
           </div>
-          <p class="project-summary">
+          <p class="col-desc">
             Privacy-first mobile printing application for Android. Operates completely offline with zero telemetry, zero cloud dependencies, full IPP/IPPS network discovery, and hardware USB OTG spooling.
           </p>
-          <div class="project-tags">
-            <span class="tag-item">Kotlin</span>
-            <span class="tag-item">Android Native</span>
-            <span class="tag-item">IPP / IPPS</span>
-            <span class="tag-item">USB OTG</span>
-            <span class="tag-item">Local-First</span>
+          <div class="col-tags">
+            Kotlin • Android SDK<br>IPP/IPPS • USB OTG
           </div>
         </a>
 
         <!-- Ezhuthurukal -->
         <a class="project-row" href="https://github.com/Abez-B/Ezhuthurukal" target="_blank" rel="noopener noreferrer">
-          <div class="row-header">
-            <div class="project-name">
-              Ezhuthurukal
-              <span class="arrow-icon">↗</span>
-            </div>
-            <span class="project-index">03 / TYPOGRAPHY</span>
+          <span class="col-index">04 / TYPOGRAPHY</span>
+          <div class="col-title">
+            Ezhuthurukal
+            <span class="arrow-icon">↗</span>
           </div>
-          <p class="project-summary">
+          <p class="col-desc">
             Minimal, community-driven Tamil font showcase and indexing archive. Enables typographers, linguists, and engineers to inspect, compare, and catalog regional Tamil typefaces.
           </p>
-          <div class="project-tags">
-            <span class="tag-item">Open Source</span>
-            <span class="tag-item">Tamil Typography</span>
-            <span class="tag-item">Web Archive</span>
+          <div class="col-tags">
+            Tamil Typography<br>Open Font Archive
           </div>
         </a>
 
         <!-- HungerBlock -->
         <a class="project-row" href="https://github.com/Abez-B/HungerBlock" target="_blank" rel="noopener noreferrer">
-          <div class="row-header">
-            <div class="project-name">
-              HungerBlock
-              <span class="arrow-icon">↗</span>
-            </div>
-            <span class="project-index">04 / COORDINATION</span>
+          <span class="col-index">05 / COORDINATION</span>
+          <div class="col-title">
+            HungerBlock
+            <span class="arrow-icon">↗</span>
           </div>
-          <p class="project-summary">
+          <p class="col-desc">
             Real-time surplus food redistribution platform connecting restaurants and hospitality providers with verified NGOs. Fast, transparent delivery verification to eliminate regional food waste.
           </p>
-          <div class="project-tags">
-            <span class="tag-item">Real-Time Routing</span>
-            <span class="tag-item">Full-Stack</span>
-            <span class="tag-item">Public Utility</span>
+          <div class="col-tags">
+            Real-Time Routing<br>Full-Stack • Utility
           </div>
         </a>
 
         <!-- Smart Linux System Health Monitor -->
         <a class="project-row" href="https://github.com/Abez-B/Smart_Linux_System_Health_Monitor" target="_blank" rel="noopener noreferrer">
-          <div class="row-header">
-            <div class="project-name">
-              Smart Linux Health Monitor
-              <span class="arrow-icon">↗</span>
-            </div>
-            <span class="project-index">05 / SYSTEMS</span>
+          <span class="col-index">06 / SYSTEMS</span>
+          <div class="col-title">
+            Smart Linux Health Monitor
+            <span class="arrow-icon">↗</span>
           </div>
-          <p class="project-summary">
+          <p class="col-desc">
             Native Linux desktop graphical system monitoring application inspired by htop. Extracts kernel metrics directly via /proc and /sys with hardware sensor charting.
           </p>
-          <div class="project-tags">
-            <span class="tag-item">C++</span>
-            <span class="tag-item">Qt Framework</span>
-            <span class="tag-item">Linux Kernel Procfs</span>
-            <span class="tag-item">Desktop GUI</span>
+          <div class="col-tags">
+            C++ • Qt Framework<br>Linux Procfs
           </div>
         </a>
 
         <!-- ziroo-shared-agent-room -->
         <a class="project-row" href="https://github.com/Abez-B/ziroo-shared-agent-room" target="_blank" rel="noopener noreferrer">
-          <div class="row-header">
-            <div class="project-name">
-              ziroo-shared-agent-room
-              <span class="arrow-icon">↗</span>
-            </div>
-            <span class="project-index">06 / AI PROTOCOL</span>
+          <span class="col-index">07 / AI PROTOCOL</span>
+          <div class="col-title">
+            ziroo-shared-agent-room
+            <span class="arrow-icon">↗</span>
           </div>
-          <p class="project-summary">
+          <p class="col-desc">
             Multiplayer chat room with a shared AI agent runtime. Implements isolated per-user conversational contexts, streaming WebSocket events, and responsive interface.
           </p>
-          <div class="project-tags">
-            <span class="tag-item">FastAPI</span>
-            <span class="tag-item">Python</span>
-            <span class="tag-item">WebSockets</span>
-            <span class="tag-item">Svelte</span>
+          <div class="col-tags">
+            FastAPI • Python<br>WebSockets • Svelte
           </div>
         </a>
       </div>
@@ -587,10 +679,12 @@
 
     <!-- Footer -->
     <footer>
-      <div>© 2026 Bharath Kumar P</div>
-      <div>
-        <a href="https://github.com/Abez-B" target="_blank" rel="noopener noreferrer">GitHub</a> • 
-        <a href="https://abez-b.github.io/Sixhuma/" target="_blank" rel="noopener noreferrer">Sixhuma</a> • 
+      <div>© 2026 Bharath Kumar P — Hosted on GitHub Pages</div>
+      <div class="footer-links">
+        <a href="https://drive.google.com/file/d/1lAMF5l1yzKIOGJPTIYAqgJDTFpBdvvb9/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
+        <a href="https://github.com/Abez-B" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://abez-b.github.io/Sixhuma/" target="_blank" rel="noopener noreferrer">Sixhuma</a>
+        <a href="https://buymeacoffee.com/abhrams" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
         <a href="mailto:bharathpj12@gmail.com">bharathpj12@gmail.com</a>
       </div>
     </footer>
