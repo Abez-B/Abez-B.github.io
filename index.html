@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bharath P J — Systems & Full-Stack Engineer</title>
+  <meta name="description" content="Personal portfolio of Bharath P J (Abez). Systems, real-time protocols, local-first Android apps, and lightweight open-source software." />
+  <meta property="og:title" content="Bharath P J — Systems & Full-Stack Engineer" />
+  <meta property="og:description" content="Systems, real-time protocols, local-first Android apps, and lightweight open-source software." />
+  <meta property="og:url" content="https://abez-b.github.io/" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 width=%22100%22 height=%22100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #fcfbfa;
+      --card-bg: #ffffff;
+      --card-hover: #f7f6f3;
+      --border: #e8e6e1;
+      --border-subtle: #f0eee9;
+      --text: #19191b;
+      --muted: #6b6972;
+      --subtle: #98969f;
+      --accent: #ea580c;
+      --accent-soft: rgba(234, 88, 12, 0.08);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0c0d10;
+      --card-bg: #131418;
+      --card-hover: #191b20;
+      --border: #23252d;
+      --border-subtle: #1a1c22;
+      --text: #ededf0;
+      --muted: #8b8d99;
+      --subtle: #5f616d;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.12);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+      --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0c0d10;
+        --card-bg: #131418;
+        --card-hover: #191b20;
+        --border: #23252d;
+        --border-subtle: #1a1c22;
+        --text: #ededf0;
+        --muted: #8b8d99;
+        --subtle: #5f616d;
+        --accent: #f97316;
+        --accent-soft: rgba(249, 115, 22, 0.12);
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+        --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 64px 20px 100px;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+    }
+
+    /* Top Navigation Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .theme-toggle-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 14px;
+      transition: border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .theme-toggle-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Header / Hero */
+    header {
+      margin-bottom: 52px;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .handle {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--subtle);
+    }
+
+    .tagline {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .bio {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+    }
+
+    h2 {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .section-counter {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--subtle);
+    }
+
+    /* Project Cards */
+    .project-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.15s ease, background-color 0.15s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background-color: var(--card-hover);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+      gap: 12px;
+    }
+
+    .project-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .arrow {
+      font-size: 14px;
+      color: var(--subtle);
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .project-card:hover .arrow {
+      transform: translateX(3px);
+      color: var(--accent);
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .pill-live {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--subtle);
+    }
+
+    .tech-item::after {
+      content: "•";
+      margin-left: 6px;
+      opacity: 0.5;
+    }
+
+    .tech-item:last-child::after {
+      content: "";
+    }
+
+    /* Core Focus / Domains */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .skill-box-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .skill-box-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--subtle);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--border);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Toast Notification for Copy */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text);
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top Nav -->
+    <div class="top-bar">
+      <span class="status-pill">
+        <span class="status-dot"></span> Available for projects & roles
+      </span>
+      <button class="theme-toggle-btn" id="themeBtn" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Header / Hero -->
+    <header>
+      <div class="title-row">
+        <h1>Bharath P J</h1>
+        <span class="handle">@Abez-B</span>
+      </div>
+      <div class="tagline">Systems, Real-Time Protocols & Local-First Software</div>
+      <p class="bio">
+        Software engineer focused on lightweight network protocols, local-first mobile applications, and privacy-preserving tools. I like writing clean, self-contained software with zero telemetry and minimal runtime overhead.
+      </p>
+      <div class="actions-row">
+        <a href="#projects" class="btn btn-primary">Selected Projects ↓</a>
+        <a href="https://github.com/Abez-B" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+        <button id="copyEmailBtn" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copy Email
+        </button>
+      </div>
+    </header>
+
+    <!-- Selected Projects -->
+    <section id="projects">
+      <div class="section-header">
+        <h2>Selected Engineering Work</h2>
+        <span class="section-counter">6 projects</span>
+      </div>
+
+      <div class="project-grid">
+        <!-- Sixhuma -->
+        <a class="project-card" href="https://abez-b.github.io/Sixhuma/" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <div class="project-title">
+              Sixhuma
+              <span class="arrow">→</span>
+            </div>
+            <div class="badge-group">
+              <span class="pill pill-live">Live App</span>
+              <span class="pill">WebSockets</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Ephemeral real-time meeting presence directory and interactive mesh network topology. Allows 150+ concurrent participants to visualize meeting dynamics with zero persistent tracking or signups.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">Svelte 5</span>
+            <span class="tech-item">Node.js Relay</span>
+            <span class="tech-item">Socket.io</span>
+            <span class="tech-item">SVG/CSS Canvas</span>
+            <span class="tech-item">Render</span>
+          </div>
+        </a>
+
+        <!-- bureprint -->
+        <a class="project-card" href="https://github.com/Abez-B/bureprint" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <div class="project-title">
+              bureprint
+              <span class="arrow">→</span>
+            </div>
+            <div class="badge-group">
+              <span class="pill">Android Native</span>
+              <span class="pill">Local-First</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Privacy-first mobile printing application for Android. Operates with zero cloud dependencies, zero telemetry, full IPP/IPPS network discovery, and direct USB OTG hardware print spooling.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">Kotlin</span>
+            <span class="tech-item">Android SDK</span>
+            <span class="tech-item">IPP/IPPS</span>
+            <span class="tech-item">USB OTG</span>
+            <span class="tech-item">No-Telemetry</span>
+          </div>
+        </a>
+
+        <!-- Ezhuthurukal -->
+        <a class="project-card" href="https://github.com/Abez-B/Ezhuthurukal" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <div class="project-title">
+              Ezhuthurukal
+              <span class="arrow">→</span>
+            </div>
+            <div class="badge-group">
+              <span class="pill">Typography</span>
+              <span class="pill">Open Data</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            A minimal, community-driven Tamil font showcase and indexing platform. Designed for linguistic researchers, designers, and developers to preview, compare, and archive regional Tamil typefaces.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">Modern Web</span>
+            <span class="tech-item">Font Parsing</span>
+            <span class="tech-item">Static Delivery</span>
+          </div>
+        </a>
+
+        <!-- HungerBlock -->
+        <a class="project-card" href="https://github.com/Abez-B/HungerBlock" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <div class="project-title">
+              HungerBlock
+              <span class="arrow">→</span>
+            </div>
+            <div class="badge-group">
+              <span class="pill">Social Impact</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Surplus food redistribution coordination system connecting commercial restaurants and hotels with verified NGOs in real time. Transparent, verified delivery workflow to eliminate food waste.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">Full-Stack</span>
+            <span class="tech-item">Real-Time Routing</span>
+            <span class="tech-item">Location APIs</span>
+          </div>
+        </a>
+
+        <!-- Smart Linux System Health Monitor -->
+        <a class="project-card" href="https://github.com/Abez-B/Smart_Linux_System_Health_Monitor" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <div class="project-title">
+              Smart Linux Health Monitor
+              <span class="arrow">→</span>
+            </div>
+            <div class="badge-group">
+              <span class="pill">Systems / Desktop</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Native Linux desktop graphical system monitoring application inspired by htop, featuring low-overhead kernel metric extraction via /proc and /sys with hardware sensor graphing.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">C++</span>
+            <span class="tech-item">Qt GUI</span>
+            <span class="tech-item">Linux Kernel Procfs</span>
+            <span class="tech-item">Desktop Native</span>
+          </div>
+        </a>
+
+        <!-- ziroo-shared-agent-room -->
+        <a class="project-card" href="https://github.com/Abez-B/ziroo-shared-agent-room" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <div class="project-title">
+              ziroo-shared-agent-room
+              <span class="arrow">→</span>
+            </div>
+            <div class="badge-group">
+              <span class="pill">AI & WebSockets</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Multiplayer chat room with a shared AI agent runtime. Features per-user isolated contexts, bidirectional WebSocket event streaming, and responsive Svelte client.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">FastAPI</span>
+            <span class="tech-item">Python</span>
+            <span class="tech-item">Svelte</span>
+            <span class="tech-item">WebSockets</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Engineering Principles / Skills -->
+    <section>
+      <div class="section-header">
+        <h2>Engineering Principles</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <div class="skill-box-title">Local-First & Ephemeral</div>
+          <p class="skill-box-desc">Prefer client-side authority and ephemeral synchronization over unnecessary database persistence and user tracking.</p>
+        </div>
+        <div class="skill-box">
+          <div class="skill-box-title">Low-Overhead Tooling</div>
+          <p class="skill-box-desc">Zero telemetry, minimal dependency footprint, and honest performance over bloated framework abstractions.</p>
+        </div>
+        <div class="skill-box">
+          <div class="skill-box-title">Free & Open Source</div>
+          <p class="skill-box-desc">Belief in independent, transparent software with zero vendor lock-in and open protocol specifications.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>© 2026 Bharath P J</div>
+      <div>
+        <a href="https://github.com/Abez-B" target="_blank" rel="noopener noreferrer">GitHub</a> • 
+        <a href="https://abez-b.github.io/Sixhuma/" target="_blank" rel="noopener noreferrer">Sixhuma</a> • 
+        <a href="mailto:bharathpj12@gmail.com">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Copied email to clipboard!</div>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function updateIcon(isDark) {
+      if (isDark) {
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      } else {
+        themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+      }
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = saved ? saved === 'dark' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      updateIcon(isDark);
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateIcon(next === 'dark');
+    });
+
+    initTheme();
+
+    // Copy email button
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    copyEmailBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText('bharathpj12@gmail.com').then(() => {
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2200);
+      });
+    });
+  </script>
+</body>
+</html>
